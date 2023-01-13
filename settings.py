@@ -4,10 +4,11 @@ from os import environ
 SESSION_CONFIGS = [
     dict(
         name='guess_two_thirds',
-        display_name="Guess 2/3 of the Average",
+        display_name="Guess 2/5 of the Average",
         app_sequence=['guess_two_thirds', 'payment_info'],
-        num_demo_participants=3,
+        num_demo_participants=6,
     ),
+
     dict(
         name='survey', app_sequence=['survey', 'payment_info'], num_demo_participants=1
     ),
@@ -30,7 +31,7 @@ SESSION_FIELDS = []
 LANGUAGE_CODE = 'en'
 
 # e.g. EUR, GBP, CNY, JPY
-REAL_WORLD_CURRENCY_CODE = 'USD'
+REAL_WORLD_CURRENCY_CODE = 'EUR'
 USE_POINTS = True
 
 ROOMS = [

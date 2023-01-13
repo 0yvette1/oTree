@@ -4,9 +4,10 @@ from otree.api import *
 doc = """
 a.k.a. Keynesian beauty contest.
 Players all guess a number; whoever guesses closest to
-2/3 of the average wins.
+2/5 of the average wins.
 See https://en.wikipedia.org/wiki/Guess_2/3_of_the_average
 """
+
 
 
 class C(BaseConstants):
@@ -15,7 +16,7 @@ class C(BaseConstants):
     NAME_IN_URL = 'guess_two_thirds'
     JACKPOT = Currency(100)
     GUESS_MAX = 120
-    INSTRUCTIONS_TEMPLATE = 'guess_two_thirds/instructions.html'
+    INSTRUCTIONS_TEMPLATE = 'guess_two_thirds_Yvette/instructions.html'
 
 
 class Subsession(BaseSubsession):
@@ -53,6 +54,7 @@ def two_thirds_avg_history(group: Group):
     return [g.two_thirds_avg for g in group.in_previous_rounds()]
 
 
+
 # PAGES
 class Introduction(Page):
     @staticmethod
@@ -69,6 +71,7 @@ class Guess(Page):
         group = player.group
 
         return dict(two_thirds_avg_history=two_thirds_avg_history(group))
+
 
 
 class ResultsWaitPage(WaitPage):
