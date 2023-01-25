@@ -2,7 +2,7 @@ from otree.api import *
 
 
 class C(BaseConstants):
-    NAME_IN_URL = 'survey'
+    NAME_IN_URL = 'Questionaire'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
 
@@ -16,31 +16,33 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    age = models.IntegerField(label='What is your age?', min=13, max=125)
-    gender = models.StringField(
-        choices=[['Male', 'Male'], ['Female', 'Female']],
-        label='What is your gender?',
+    household = models.IntegerField(label='How many people live with you in the Household', min=1, max=10)
+    degree = models.StringField(
+        choices=[['Highschool', 'Highschool'], ['University', 'University'], ['Vocational Training', 'Vocational Training']],
+        label='What is your highest degree?',
         widget=widgets.RadioSelect,
     )
+#answer = models.stringField(
+    #choices=[['yes', 'yes'], ['no', 'no']],
+    #label='Do you know the Nutri-Score?',
+    #widget=widgets.RadioSelect,
+    #)
     crt_bat = models.IntegerField(
         label='''
-        A bat and a ball cost 22 dollars in total.
-        The bat costs 20 dollars more than the ball.
-        How many dollars does the ball cost?'''
+        How often in a week do you eat proceed food?'''
     )
-    crt_widget = models.IntegerField(
-        label='''
-        If it takes 5 machines 5 minutes to make 5 widgets,
-        how many minutes would it take 100 machines to make 100 widgets?
-        '''
-    )
+
+
     crt_lake = models.IntegerField(
         label='''
-        In a lake, there is a patch of lily pads.
-        Every day, the patch doubles in size.
-        If it takes 48 days for the patch to cover the entire lake,
-        how many days would it take for the patch to cover half of the lake?
+        How many categories does the Nutri-Score have?
         '''
+    )
+
+    crt_fake = models.StringField(
+        label='''
+            Do you know the Nutri-Score?
+            '''
     )
 
 
@@ -48,12 +50,12 @@ class Player(BasePlayer):
 # PAGES
 class Demographics(Page):
     form_model = 'player'
-    form_fields = ['age', 'gender']
+    form_fields = ['household', 'degree']
 
 
 class CognitiveReflectionTest(Page):
     form_model = 'player'
-    form_fields = ['crt_bat', 'crt_widget', 'crt_lake']
+    form_fields = ['crt_bat', 'crt_lake', 'crt_fake']
 
 
 page_sequence = [Demographics, CognitiveReflectionTest]
