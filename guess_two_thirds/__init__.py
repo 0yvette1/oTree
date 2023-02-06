@@ -33,6 +33,8 @@ class Player(BasePlayer):
         min=0, max=C.GUESS_MAX, label="Please pick a number from 0 to 120:"
     )
     is_winner = models.BooleanField(initial=False)
+    age = models.IntegerField(initial=False)
+    gender = models.IntegerField(initial=False)
 
 
 # FUNCTIONS
@@ -82,6 +84,10 @@ class Results(Page):
 
         sorted_guesses = sorted(p.guess for p in group.get_players())
         return dict(sorted_guesses=sorted_guesses)
+
+class Demographics(Page):
+    form_model = 'player'
+    form_fields = ['age', 'gender']
 
 
 page_sequence = [Introduction, Guess, ResultsWaitPage, Results]
